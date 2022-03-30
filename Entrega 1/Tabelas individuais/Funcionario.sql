@@ -5,4 +5,4 @@ CREATE TABLE Funcionario ( --herda de pessoa
     salario NUMBER NOT NULL CHECK (salario >= 1212.00),
     CONSTRAINT funcionario_pk PRIMARY KEY (cpf),
     CONSTRAINT funcionario_fk FOREIGN KEY (cpf_supervisor) REFERENCES Funcionario(cpf)
-)
+);
