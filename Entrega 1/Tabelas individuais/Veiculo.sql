@@ -4,4 +4,4 @@ CREATE TABLE Veiculo (
     cpf_cliente VARCHAR2(11) NOT NULL,
     CONSTRAINT veiculo_pk PRIMARY KEY (placa),
     CONSTRAINT veiculo_fk FOREIGN KEY (cpf_cliente) REFERENCES Cliente(cpf)
-)
+);
