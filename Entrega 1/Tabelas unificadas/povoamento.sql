@@ -69,9 +69,9 @@ INSERT INTO Telefones(cpf, num_telefone) VALUES ('014', '81900000014');
 INSERT INTO Telefones(cpf, num_telefone) VALUES ('015', '81900000015');
 
 --povoamento cancelas
-INSERT INTO Cancela(endereco, num_cancela, cpf_funcionario, preco_tarifa, data_manutencao, status, tipo_veiculo) VALUES ('Rua Amelia 65', '1', '007', '5', to_date('30/04/2022', 'dd/mm/yy'), 'ativada', 'pessoal'); 
-INSERT INTO Cancela(endereco, num_cancela, cpf_funcionario, preco_tarifa, data_manutencao, status, tipo_veiculo) VALUES ('Rua Amelia 65', '2', '010', '5', to_date('31/03/2022', 'dd/mm/yy'), 'desativada', 'pessoal'); 
-INSERT INTO Cancela(endereco, num_cancela, cpf_funcionario, preco_tarifa, data_manutencao, status, tipo_veiculo) VALUES ('Rua Amelia 65', '3', '011', '10', to_date('31/05/2022', 'dd/mm/yy'), 'ativada', 'coletivo'); 
+INSERT INTO Cancela(endereco, num_cancela, preco_tarifa, data_manutencao, status, tipo_veiculo) VALUES ('Rua Amelia 65', '1', '5', to_date('30/04/2022', 'dd/mm/yy'), 'ativada', 'pessoal'); 
+INSERT INTO Cancela(endereco, num_cancela, preco_tarifa, data_manutencao, status, tipo_veiculo) VALUES ('Rua Amelia 65', '2', '5', to_date('31/03/2022', 'dd/mm/yy'), 'desativada', 'pessoal'); 
+INSERT INTO Cancela(endereco, num_cancela, preco_tarifa, data_manutencao, status, tipo_veiculo) VALUES ('Rua Amelia 65', '3', '10', to_date('31/05/2022', 'dd/mm/yy'), 'ativada', 'coletivo'); 
 
 --povoamento monitora
 INSERT INTO Monitora(cpf_funcionario, endereco, num_cancela, inicio_monitoramento, fim_monitoramento) VALUES ('007', 'Rua Amelia 65', '1', TIMESTAMP '2022-08-10 08:00:00', TIMESTAMP '2022-08-10 17:00:00');
