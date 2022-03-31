@@ -1,3 +1,6 @@
+--povoamento pedágio
+INSERT INTO Pedagio(nome, endereco, quant_cancelas) VALUES ('Valerium', 'Rua Amelia 65', '3');
+
 --povoamento pessoa
 INSERT INTO Pessoa(cpf, nascimento, nome, sobrenome) VALUES ('001', to_date('18/06/1992', 'dd/mm/yy'),'Rogério', 'Gouveia');
 INSERT INTO Pessoa(cpf, nascimento, nome, sobrenome) VALUES ('002', to_date('16/02/1999', 'dd/mm/yy'),'Fabricia', 'Galeão');
@@ -14,7 +17,6 @@ INSERT INTO Pessoa(cpf, nascimento, nome, sobrenome) VALUES ('012', to_date('12/
 INSERT INTO Pessoa(cpf, nascimento, nome, sobrenome) VALUES ('013', to_date('28/05/1966', 'dd/mm/yy'),'Celso', 'Straub');
 INSERT INTO Pessoa(cpf, nascimento, nome, sobrenome) VALUES ('014', to_date('08/08/1998', 'dd/mm/yy'),'Shawn', 'Mendes');
 INSERT INTO Pessoa(cpf, nascimento, nome, sobrenome) VALUES ('015', to_date('23/05/1985', 'dd/mm/yy'),'Will', 'Smith');
-
 
 -- povoamento funcionario
 INSERT INTO Funcionario(cpf, cpf_supervisor, endereco, cargo, salario) VALUES ('001', '001', 'Rua Amelia 65', 'gerente', '12000');
@@ -45,9 +47,6 @@ INSERT INTO Veiculo(placa, tipo, cpf_cliente) VALUES ('CCC4321', 'pessoal', '012
 INSERT INTO Veiculo(placa, tipo, cpf_cliente) VALUES ('DDD0810', 'coletivo', '007');
 INSERT INTO Veiculo(placa, tipo, cpf_cliente) VALUES ('TCC2022', 'pessoal', '002');
 INSERT INTO Veiculo(placa, tipo, cpf_cliente) VALUES ('TAT4505', 'pessoal', '009');
-
---povoamento pedágio
-INSERT INTO Pedagio(nome, endereco, quant_cancelas) VALUES ('Valerium', 'Rua Amelia 65', '3');
 
 --povoamento telefones
 INSERT INTO Telefones(cpf, num_telefone) VALUES ('001', '81900000001');
