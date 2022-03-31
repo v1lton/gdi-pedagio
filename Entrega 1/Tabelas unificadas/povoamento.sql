@@ -69,26 +69,17 @@ INSERT INTO Telefones(cpf, num_telefone) VALUES ('014', '81900000014');
 INSERT INTO Telefones(cpf, num_telefone) VALUES ('015', '81900000015');
 
 --povoamento cancelas
-INSERT INTO Cancela(endereco, num_cancela, cpf_funcionario, preco_tarifa, data_manutencao, status, tipo_veiculo) \
-VALUES ('Rua Amelia 65', '1', '007', '5', to_date('30/04/2022', 'dd/mm/yy'), 'ativada', 'pessoal'); 
-INSERT INTO Cancela(endereco, num_cancela, cpf_funcionario, preco_tarifa, data_manutencao, status, tipo_veiculo) \
-VALUES ('Rua Amelia 65', '2', '010', '5', to_date('31/03/2022', 'dd/mm/yy'), 'desativada', 'pessoal'); 
-INSERT INTO Cancela(endereco, num_cancela, cpf_funcionario, preco_tarifa, data_manutencao, status, tipo_veiculo) \
-VALUES ('Rua Amelia 65', '3', '011', '10', to_date('31/05/2022', 'dd/mm/yy'), 'ativada', 'coletivo'); 
+INSERT INTO Cancela(endereco, num_cancela, cpf_funcionario, preco_tarifa, data_manutencao, status, tipo_veiculo) VALUES ('Rua Amelia 65', '1', '007', '5', to_date('30/04/2022', 'dd/mm/yy'), 'ativada', 'pessoal'); 
+INSERT INTO Cancela(endereco, num_cancela, cpf_funcionario, preco_tarifa, data_manutencao, status, tipo_veiculo) VALUES ('Rua Amelia 65', '2', '010', '5', to_date('31/03/2022', 'dd/mm/yy'), 'desativada', 'pessoal'); 
+INSERT INTO Cancela(endereco, num_cancela, cpf_funcionario, preco_tarifa, data_manutencao, status, tipo_veiculo) VALUES ('Rua Amelia 65', '3', '011', '10', to_date('31/05/2022', 'dd/mm/yy'), 'ativada', 'coletivo'); 
 
 --povoamento monitora
-INSERT INTO Monitora(cpf_funcionario, endereco, num_cancela, inicio_monitoramento, fim_monitoramento) \
-VALUES ('007', 'Rua Amelia 65', '1', TIMESTAMP '2022-08-10 08:00:00', TIMESTAMP '2022-08-10 17:00:00');
-INSERT INTO Monitora(cpf_funcionario, endereco, num_cancela, inicio_monitoramento, fim_monitoramento) \
-VALUES ('010', 'Rua Amelia 65', '2', TIMESTAMP '2022-08-10 08:00:00', TIMESTAMP '2022-08-10 17:00:00');
-INSERT INTO Monitora(cpf_funcionario, endereco, num_cancela, inicio_monitoramento, fim_monitoramento) \
-VALUES ('011', 'Rua Amelia 65', '3', TIMESTAMP '2022-08-10 08:00:00', TIMESTAMP '2022-08-10 17:00:00');
-INSERT INTO Monitora(cpf_funcionario, endereco, num_cancela, inicio_monitoramento, fim_monitoramento) \
-VALUES ('010', 'Rua Amelia 65', '1', TIMESTAMP '2022-09-10 08:00:00', TIMESTAMP '2022-09-10 17:00:00');
-INSERT INTO Monitora(cpf_funcionario, endereco, num_cancela, inicio_monitoramento, fim_monitoramento) \
-VALUES ('011', 'Rua Amelia 65', '2', TIMESTAMP '2022-09-10 08:00:00', TIMESTAMP '2022-09-10 17:00:00');
-INSERT INTO Monitora(cpf_funcionario, endereco, num_cancela, inicio_monitoramento, fim_monitoramento) \
-VALUES ('007', 'Rua Amelia 65', '3', TIMESTAMP '2022-09-10 08:00:00', TIMESTAMP '2022-09-10 17:00:00');
+INSERT INTO Monitora(cpf_funcionario, endereco, num_cancela, inicio_monitoramento, fim_monitoramento) VALUES ('007', 'Rua Amelia 65', '1', TIMESTAMP '2022-08-10 08:00:00', TIMESTAMP '2022-08-10 17:00:00');
+INSERT INTO Monitora(cpf_funcionario, endereco, num_cancela, inicio_monitoramento, fim_monitoramento) VALUES ('010', 'Rua Amelia 65', '2', TIMESTAMP '2022-08-10 08:00:00', TIMESTAMP '2022-08-10 17:00:00');
+INSERT INTO Monitora(cpf_funcionario, endereco, num_cancela, inicio_monitoramento, fim_monitoramento) VALUES ('011', 'Rua Amelia 65', '3', TIMESTAMP '2022-08-10 08:00:00', TIMESTAMP '2022-08-10 17:00:00');
+INSERT INTO Monitora(cpf_funcionario, endereco, num_cancela, inicio_monitoramento, fim_monitoramento) VALUES ('010', 'Rua Amelia 65', '1', TIMESTAMP '2022-09-10 08:00:00', TIMESTAMP '2022-09-10 17:00:00');
+INSERT INTO Monitora(cpf_funcionario, endereco, num_cancela, inicio_monitoramento, fim_monitoramento) VALUES ('011', 'Rua Amelia 65', '2', TIMESTAMP '2022-09-10 08:00:00', TIMESTAMP '2022-09-10 17:00:00');
+INSERT INTO Monitora(cpf_funcionario, endereco, num_cancela, inicio_monitoramento, fim_monitoramento) VALUES ('007', 'Rua Amelia 65', '3', TIMESTAMP '2022-09-10 08:00:00', TIMESTAMP '2022-09-10 17:00:00');
 
 --povoamento desconto
 CREATE SEQUENCE codigo INCREMENT by 1 START WITH 1;
@@ -99,15 +90,9 @@ INSERT INTO Desconto(porcentagem, codigo, cpf_cliente) VALUES ('30', codigo.NEXT
 INSERT INTO Desconto(porcentagem, codigo, cpf_cliente) VALUES ('20', codigo.NEXTVAL, '009');
 
 --povoamento pagamento  
-INSERT INTO Pagamento(cpf_cliente, placa_veiculo, endereco, num_cancela, codigo_desconto, data_pagamento, forma_pagamento) \
-VALUES ('001', 'AAA1234', 'Rua Amelia 65', '1', '2', TIMESTAMP '2022-08-10 12:23:37', 'dinheiro');
-INSERT INTO Pagamento(cpf_cliente, placa_veiculo, endereco, num_cancela, codigo_desconto, data_pagamento, forma_pagamento) \
-VALUES ('001', 'AAA1234', 'Rua Amelia 65', '1', '',  TIMESTAMP '2022-08-10 13:23:37', 'debito');
-INSERT INTO Pagamento(cpf_cliente, placa_veiculo, endereco, num_cancela, codigo_desconto, data_pagamento, forma_pagamento) \
-VALUES ('007', 'DDD0810', 'Rua Amelia 65', '3', '3', TIMESTAMP '2022-12-12 13:12:23', 'PIX');
-INSERT INTO Pagamento(cpf_cliente, placa_veiculo, endereco, num_cancela, codigo_desconto, data_pagamento, forma_pagamento) \
-VALUES ('002', 'TCC2022', 'Rua Amelia 65', '1', '', TIMESTAMP '2022-01-05 11:22:44', 'credito');
-INSERT INTO Pagamento(cpf_cliente, placa_veiculo, endereco, num_cancela, codigo_desconto, data_pagamento, forma_pagamento) \
-VALUES ('009', 'TAT4505', 'Rua Amelia 65', '2', '4', TIMESTAMP '2022-12-11 22:00:22', 'debito');
-INSERT INTO Pagamento(cpf_cliente, placa_veiculo, endereco, num_cancela, codigo_desconto, data_pagamento, forma_pagamento) \
-VALUES ('005', 'BBB2021', 'Rua Amelia 65', '3', '1', TIMESTAMP '2022-10-08 11:55:32', 'PIX');
+INSERT INTO Pagamento(cpf_cliente, placa_veiculo, endereco, num_cancela, codigo_desconto, data_pagamento, forma_pagamento) VALUES ('001', 'AAA1234', 'Rua Amelia 65', '1', '2', TIMESTAMP '2022-08-10 12:23:37', 'dinheiro');
+INSERT INTO Pagamento(cpf_cliente, placa_veiculo, endereco, num_cancela, codigo_desconto, data_pagamento, forma_pagamento) VALUES ('001', 'AAA1234', 'Rua Amelia 65', '1', '',  TIMESTAMP '2022-08-10 13:23:37', 'debito');
+INSERT INTO Pagamento(cpf_cliente, placa_veiculo, endereco, num_cancela, codigo_desconto, data_pagamento, forma_pagamento) VALUES ('007', 'DDD0810', 'Rua Amelia 65', '3', '3', TIMESTAMP '2022-12-12 13:12:23', 'PIX');
+INSERT INTO Pagamento(cpf_cliente, placa_veiculo, endereco, num_cancela, codigo_desconto, data_pagamento, forma_pagamento) VALUES ('002', 'TCC2022', 'Rua Amelia 65', '1', '', TIMESTAMP '2022-01-05 11:22:44', 'credito');
+INSERT INTO Pagamento(cpf_cliente, placa_veiculo, endereco, num_cancela, codigo_desconto, data_pagamento, forma_pagamento) VALUES ('009', 'TAT4505', 'Rua Amelia 65', '2', '4', TIMESTAMP '2022-12-11 22:00:22', 'debito');
+INSERT INTO Pagamento(cpf_cliente, placa_veiculo, endereco, num_cancela, codigo_desconto, data_pagamento, forma_pagamento) VALUES ('005', 'BBB2021', 'Rua Amelia 65', '3', '1', TIMESTAMP '2022-10-08 11:55:32', 'PIX');
