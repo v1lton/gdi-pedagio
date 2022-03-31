@@ -17,13 +17,13 @@ INSERT INTO Pessoa(cpf, nascimento, nome, sobrenome) VALUES ('015', to_date('23/
 
 
 -- povoamento funcionario
-INSERT INTO Funcionario(cpf, cpf_supervisor, cargo, salario) VALUES ('001', '001', 'gerente', '12000');
-INSERT INTO Funcionario(cpf, cpf_supervisor, cargo, salario) VALUES ('006', '001', 'coordenador', '7000');
-INSERT INTO Funcionario(cpf, cpf_supervisor, cargo, salario) VALUES ('007', '006', 'atendente', '1500');
-INSERT INTO Funcionario(cpf, cpf_supervisor, cargo, salario) VALUES ('010', '006', 'atendente', '1500');
-INSERT INTO Funcionario(cpf, cpf_supervisor, cargo, salario) VALUES ('011', '006', 'atendente', '1500');
-INSERT INTO Funcionario(cpf, cpf_supervisor, cargo, salario) VALUES ('012', '001', 'mecanico', '3000');
-INSERT INTO Funcionario(cpf, cpf_supervisor, cargo, salario) VALUES ('013', '001', 'rh', '3000');
+INSERT INTO Funcionario(cpf, cpf_supervisor, endereco, cargo, salario) VALUES ('001', '001', 'Rua Amelia 65', 'gerente', '12000');
+INSERT INTO Funcionario(cpf, cpf_supervisor, endereco, cargo, salario) VALUES ('006', '001', 'Rua Amelia 65', 'coordenador', '7000');
+INSERT INTO Funcionario(cpf, cpf_supervisor, endereco, cargo, salario) VALUES ('007', '006', 'Rua Amelia 65', 'atendente', '1500');
+INSERT INTO Funcionario(cpf, cpf_supervisor, endereco, cargo, salario) VALUES ('010', '006', 'Rua Amelia 65', 'atendente', '1500');
+INSERT INTO Funcionario(cpf, cpf_supervisor, endereco, cargo, salario) VALUES ('011', '006', 'Rua Amelia 65', 'atendente', '1500');
+INSERT INTO Funcionario(cpf, cpf_supervisor, endereco, cargo, salario) VALUES ('012', '001', 'Rua Amelia 65', 'mecanico', '3000');
+INSERT INTO Funcionario(cpf, cpf_supervisor, endereco, cargo, salario) VALUES ('013', '001', 'Rua Amelia 65', 'rh', '3000');
 
 --povoamento cliente
 INSERT INTO Cliente(cpf) VALUES ('001');
