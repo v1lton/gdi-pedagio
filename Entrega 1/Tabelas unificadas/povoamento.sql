@@ -1,3 +1,5 @@
+ALTER SESSION SET NLS_TIMESTAMP_FORMAT='DD-MON-YY HH24:MI';
+
 --povoamento pedágio
 INSERT INTO Pedagio(nome, endereco, quant_cancelas) VALUES ('Valerium', 'Rua Amelia 65', '3');
 
