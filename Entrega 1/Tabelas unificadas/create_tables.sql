@@ -84,7 +84,7 @@ CREATE TABLE Pagamento (
     codigo_desconto NUMBER,
     data_pagamento TIMESTAMP NOT NULL,
     forma_pagamento VARCHAR2(255) NOT NULL,
-    CONSTRAINT pagamento_pk PRIMARY KEY (cpf_cliente, placa_veiculo, endereco, num_cancela),
+    CONSTRAINT pagamento_pk PRIMARY KEY (cpf_cliente, placa_veiculo, endereco, num_cancela, data_pagamento),
     CONSTRAINT pagamento_fkey1 FOREIGN KEY (endereco, num_cancela) REFERENCES Cancela(endereco, num_cancela),
     CONSTRAINT pagamento_fkey2 FOREIGN KEY (codigo_desconto) REFERENCES Desconto(codigo),
     CONSTRAINT pagamento_fkey3 FOREIGN KEY (cpf_cliente) REFERENCES Cliente(cpf),
