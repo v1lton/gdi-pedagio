@@ -1,3 +1,10 @@
+CREATE TABLE Pedagio (
+    nome VARCHAR2(255) NOT NULL,
+    endereco VARCHAR2(255) NOT NULL,
+    quant_cancelas NUMBER NOT NULL CHECK (quant_cancelas > 0),
+    CONSTRAINT pedagio_pk PRIMARY KEY (endereco)
+);
+
 CREATE TABLE Pessoa (
     cpf VARCHAR2(11) NOT NULL,
     nascimento DATE NOT NULL,
@@ -31,12 +38,6 @@ CREATE TABLE Veiculo (
     CONSTRAINT veiculo_fk FOREIGN KEY (cpf_cliente) REFERENCES Cliente(cpf)
 );
 
-CREATE TABLE Pedagio (
-    nome VARCHAR2(255) NOT NULL,
-    endereco VARCHAR2(255) NOT NULL,
-    quant_cancelas NUMBER NOT NULL CHECK (quant_cancelas > 0),
-    CONSTRAINT pedagio_pk PRIMARY KEY (endereco)
-);
 
 CREATE TABLE Telefones (
     cpf VARCHAR2(11) NOT NULL,
