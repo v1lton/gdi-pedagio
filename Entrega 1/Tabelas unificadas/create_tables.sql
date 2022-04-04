@@ -38,7 +38,6 @@ CREATE TABLE Veiculo (
     CONSTRAINT veiculo_fk FOREIGN KEY (cpf_cliente) REFERENCES Cliente(cpf)
 );
 
-
 CREATE TABLE Telefones (
     cpf VARCHAR2(11) NOT NULL,
     num_telefone VARCHAR2(11) NOT NULL,

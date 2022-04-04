@@ -82,3 +82,17 @@ WHERE codigo_desconto IS NULL;
 Listar toda a tabela de clientes, ordenada ascendentemente 
 pelo nome (ordem alfabética de a-z)*/
 SELECT * FROM Cliente ORDER BY nome;
+
+/*Left/Right/Full outer join
+Lista o cpf de todos os funcionários e os cpf mais os cargos dos funcionários de quem são responsáveis
+*/
+SELECT FC.cpf, F.cpf, F.cargo
+FROM Funcionario FC LEFT OUTER JOIN Funcionario F
+ON FC.cpf = F.cpf_supervisor;
+
+
+/*Subconsulta com operador relacional e suconsulta com in:
+Busca o CPF de todos os clientes que efetuaram o pagamento na cancela de número 1 ou de número 2*/
+SELECT C.cpf from Cliente C
+WHERE C.cpf IN (SELECT cpf_cliente
+FROM Pagamento WHERE num_cancela = '1' OR num_cancela = '2');
