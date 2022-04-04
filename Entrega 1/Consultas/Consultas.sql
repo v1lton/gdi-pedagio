@@ -90,9 +90,52 @@ SELECT FC.cpf, F.cpf, F.cargo
 FROM Funcionario FC LEFT OUTER JOIN Funcionario F
 ON FC.cpf = F.cpf_supervisor;
 
-
 /*Subconsulta com operador relacional e suconsulta com in:
 Busca o CPF de todos os clientes que efetuaram o pagamento na cancela de número 1 ou de número 2*/
 SELECT C.cpf from Cliente C
 WHERE C.cpf IN (SELECT cpf_cliente
 FROM Pagamento WHERE num_cancela = '1' OR num_cancela = '2');
+
+/*Group By:
+Lista todos os clientes e a quantidade de vezes que pagaram para
+passar numa cancela */
+SELECT cpf_cliente, COUNT(*)
+FROM Pagamento
+GROUP BY cpf_cliente;
+
+/*Subconsulta com Any
+Lista funcionarios com salario maior que o salario 
+de pelo menos um funcionario que é do rh. */
+SELECT cpf, salario, cargo FROM Funcionario 
+WHERE salario > ANY (SELECT salario FROM Funcionario WHERE cargo = 'rh');
+
+/*Subconsulta com all
+Listar funcionarios com salario maior ao salario de 
+cada funcionario com o cargo atendente. */
+SELECT cpf, salario, cargo FROM Funcionario 
+WHERE salario > ALL (SELECT salario FROM Funcionario WHERE cargo = 'atendente');
+
+/*Create view: 
+Descrição: Criar visualização de pagamentos que 
+foram realizados de maneira integral, onde nenhum cupom foi utilizado. */
+CREATE VIEW visao_pagIntegral AS 
+SELECT * FROM Pagamento
+WHERE codigo_desconto IS NULL;
+
+/* Grant / Revoke:
+Descrição: Dar ao usuário a capacidade de inserir e deletar pessoas 
+do banco de dados. Depois, vamos impedir que pessoas sejam deletadas. */
+GRANT DELETE, INSERT ON Pessoa TO PUBLIC;
+REVOKE DELETE ON Pessoa FROM PUBLIC;
+
+/*Having
+Selecionar os clientes que passaram 2 ou mais vezes por uma (ou mais) cancelas*/
+SELECT cpf_cliente, COUNT(*)
+FROM Pagamento
+GROUP BY cpf_cliente;
+HAVING COUNT(*) >= 2
+
+/*Union ou Intersect ou Minus 
+Selecionar todas as pessoas cadastradas que que são funcionários e clientes ao mesmo tempo e mostrar seus nomes e cpfs. */
+SELECT nome, cpf FROM Pessoa
+WHERE cpf IN (SELECT cpf FROM Funcionario INTERSECT SELECT cpf FROM Cliente);
