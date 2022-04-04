@@ -114,3 +114,15 @@ Descrição: Dar ao usuário a capacidade de inserir e deletar pessoas
 do banco de dados. Depois, vamos impedir que pessoas sejam deletadas. */
 GRANT DELETE, INSERT ON Pessoa TO PUBLIC;
 REVOKE DELETE ON Pessoa FROM PUBLIC;
+
+/*Having
+Selecionar os clientes que passaram 2 ou mais vezes por uma (ou mais) cancelas*/
+SELECT cpf_cliente, COUNT(*)
+FROM Pagamento
+GROUP BY cpf_cliente;
+HAVING COUNT(*) >= 2
+
+/*Union ou Intersect ou Minus 
+Selecionar todas as pessoas cadastradas que que são funcionários e clientes ao mesmo tempo e mostrar seus nomes e cpfs. */
+SELECT nome, cpf FROM Pessoa
+WHERE cpf IN (SELECT cpf FROM Funcionario INTERSECT SELECT cpf FROM Cliente);
