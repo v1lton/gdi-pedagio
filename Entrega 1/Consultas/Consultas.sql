@@ -82,3 +82,22 @@ WHERE codigo_desconto IS NULL;
 Listar toda a tabela de clientes, ordenada ascendentemente 
 pelo nome (ordem alfabética de a-z)*/
 SELECT * FROM Cliente ORDER BY nome;
+
+/*Group By:
+Lista todos os clientes e a quantidade de vezes que pagaram para
+passar numa cancela */
+SELECT cpf_cliente, COUNT(*)
+FROM Pagamento
+GROUP BY cpf_cliente;
+
+/*Subconsulta com Any
+Lista funcionarios com salario maior que o salario 
+de pelo menos um funcionario que é do rh. */
+SELECT cpf, salario, cargo FROM Funcionario 
+WHERE salario > ANY (SELECT salario FROM Funcionario WHERE cargo = 'rh');
+
+/*Subconsulta com all
+Listar funcionarios com salario maior ao salario de 
+cada funcionario com o cargo atendente. */
+SELECT cpf, salario, cargo FROM Funcionario 
+WHERE salario > ALL (SELECT salario FROM Funcionario WHERE cargo = 'atendente');
