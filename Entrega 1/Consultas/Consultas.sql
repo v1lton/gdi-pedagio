@@ -101,3 +101,16 @@ Listar funcionarios com salario maior ao salario de
 cada funcionario com o cargo atendente. */
 SELECT cpf, salario, cargo FROM Funcionario 
 WHERE salario > ALL (SELECT salario FROM Funcionario WHERE cargo = 'atendente');
+
+/*Create view: 
+Descrição: Criar visualização de pagamentos que 
+foram realizados de maneira integral, onde nenhum cupom foi utilizado. */
+CREATE VIEW visao_pagIntegral AS 
+SELECT * FROM Pagamento
+WHERE codigo_desconto IS NULL;
+
+/* Grant / Revoke:
+Descrição: Dar ao usuário a capacidade de inserir e deletar pessoas 
+do banco de dados. Depois, vamos impedir que pessoas sejam deletadas. */
+GRANT DELETE, INSERT ON Pessoa TO PUBLIC;
+REVOKE DELETE ON Pessoa FROM PUBLIC;
