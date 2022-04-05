@@ -56,7 +56,7 @@ BEGIN
     cancela_01.endereco := 'Rua das Mariposas Apropriquadas';
     DBMS_OUTPUT.PUT_LINE(cancela_01.nome);
     
-/*EXCEPTION WHEN E CREATE OR REPLACE TRIGGER (COMANDO):
+/*CREATE OR REPLACE TRIGGER (COMANDO), EXCEPTION WHEN E IF ELSIF:
 Criando trigger que é ativado quando existe a tentativa de se fazer um pagamento fora do horário definido */
 CREATE OR REPLACE TRIGGER pedagio_fechado
 BEFORE INSERT ON Pagamento
