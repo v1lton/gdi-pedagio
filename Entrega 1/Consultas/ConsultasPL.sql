@@ -15,3 +15,28 @@ BEGIN
     INSERT INTO Pessoa VALUES nova_pessoa;
 END record_block;
 
+/*Faz uma lista de coluna única das placas dos veiculos cadastrados nos pedagios, usando o %TYPE 
+para referencia e o FOR IN LOOP para lista-las. */
+<<placas_veiculos_block>>
+DECLARE 
+    TYPE placa_veiculos IS TABLE OF Veiculo.placa%TYPE
+    INDEX BY BINARY_INTEGER;
+    placas_veiculos_table placa_veiculos;
+    i BINARY_INTEGER;
+BEGIN   
+    i := 1;
+    FOR current_row IN (SELECT placa FROM Veiculo) LOOP
+        placas_veiculos_table(i) := current_row.placa;
+        i := i + 1;
+    END LOOP;
+    FOR j IN 1..i-1 LOOP
+        DBMS_OUTPUT.PUT_LINE(placas_veiculos_table(j));
+    END LOOP;
+END placas_veiculos_block;
+
+/*Procedimento que cadastra um novo desconto. */
+CREATE OR REPLACE PROCEDURE cadastroDesconto (aux IN Desconto%ROWTYPE) IS
+BEGIN
+    INSERT INTO Desconto(porcentagem, codigo, cpf_cliente)
+            VALUES (aux.porcentagem, aux.codigo, aux.cpf_cliente);
+END;
