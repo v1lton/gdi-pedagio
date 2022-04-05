@@ -36,7 +36,7 @@ BEGIN
     END LOOP;
 END placas_veiculos_block;
 
-/*USO DE PARÂMETROS (IN, OUT OU IN OUT):
+/*USO DE PARÂMETROS (IN, OUT OU IN OUT) E %ROWTYPE:
 Procedimento que cadastra um novo desconto. */
 CREATE OR REPLACE PROCEDURE cadastroDesconto (aux IN Desconto%ROWTYPE) IS
 BEGIN
@@ -44,9 +44,8 @@ BEGIN
             VALUES (aux.porcentagem, aux.codigo, aux.cpf_cliente);
 END;
 
-/*
-Criando um bloco anônimo com um record de pedagio e printando o nome
-*/
+/*BLOCO ANÔNIMO:
+Criando um bloco anônimo com um record de pedagio e printando o nome*/
 DECLARE
     TYPE type_cancela IS RECORD (
         nome VARCHAR2(255),
@@ -56,8 +55,13 @@ BEGIN
     cancela_01.nome := 'Karibian';
     cancela_01.endereco := 'Rua das Mariposas Apropriquadas';
     DBMS_OUTPUT.PUT_LINE(cancela_01.nome);
+<<<<<<< HEAD
 
 /*EXCEPTION WHEN E CREATE OR REPLACE TRIGGER (COMANDO):
+=======
+    
+/*CREATE OR REPLACE TRIGGER (COMANDO), EXCEPTION WHEN E IF ELSIF:
+>>>>>>> 6eb88b812d7cb0990a2f50c9e9da3ce013993698
 Criando trigger que é ativado quando existe a tentativa de se fazer um pagamento fora do horário definido */
 CREATE OR REPLACE TRIGGER pedagio_fechado
 BEFORE INSERT ON Pagamento
@@ -73,7 +77,8 @@ WHEN pagamento_fora_do_horario THEN
     Raise_application_error(-20202, 'FORA DO HORARIO-' || 'Nosso pedágio fica aberto somente das 8h as 17h. Tente novamente em outro horário.');
 END;
 
-/*Descrição: loop que analisa os veículos cadastrados, contabilizando de acordo com o tipo.
+/*CASE WHEN, LOOP EXIT WHEN, CURSOR (OPEN, FETCH, CLOSE) E WHILE LOOP: 
+Loop que analisa os veículos cadastrados, contabilizando de acordo com o tipo.
 Cursor foi usado para pegar o tipo na tabela Veiculo. */
 DECLARE 
     count_pessoal BINARY_INTEGER;
@@ -143,4 +148,21 @@ PROCEDURE new_cancela(
 END cadastros;
 BEGIN
     cadastros.new_cancela()
+END;
+
+/*CREATE OR REPLACE TRIGGER (LINHA​)
+Trigger ativado quando se tenta inserir um Desconto com porcentagem negativa. */
+CREATE OR REPLACE TRIGGER porcentagem_negativa
+BEFORE INSERT ON Desconto
+FOR EACH ROW
+DECLARE
+    porcentagem_negativa EXCEPTION;
+BEGIN 
+    IF :NEW.porcentagem < 0 THEN
+        DBMS_OUTPUT.PUT_LINE('DESCONTO COM PORCENTAGEM NEGATIVA');
+        RAISE porcentagem_negativa;
+    END IF;
+EXCEPTION
+    WHEN porcentagem_negativa THEN
+    Raise_application_error(-20202, 'Valor negativo da porcentagem de desconto-' || 'Não é possível inserir um valor negativo à porcentagem do do Desconto.');
 END;
