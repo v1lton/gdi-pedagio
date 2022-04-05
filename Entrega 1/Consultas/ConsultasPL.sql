@@ -72,3 +72,36 @@ EXCEPTION
 WHEN pagamento_fora_do_horario THEN
     Raise_application_error(-20202, 'FORA DO HORARIO-' || 'Nosso pedágio fica aberto somente das 8h as 17h. Tente novamente em outro horário.');
 END;
+
+/*Descrição: loop que analisa os veículos cadastrados, contabilizando de acordo com o tipo.
+Cursor foi usado para pegar o tipo na tabela Veiculo. */
+DECLARE 
+    count_pessoal BINARY_INTEGER;
+    count_coletivo BINARY_INTEGER;
+    i BINARY_INTEGER;
+    q BINARY_INTEGER;
+    aux_veiculo Veiculo.tipo%TYPE;
+
+    CURSOR c_veiculo IS
+        SELECT V.tipo
+        FROM Veiculo V;
+BEGIN
+    OPEN c_veiculo;
+    count_pessoal := 0;
+    count_coletivo := 0;
+    i := 0;
+    SELECT COUNT(*) INTO q FROM Veiculo;
+    WHILE i < q LOOP
+        FETCH c_veiculo INTO aux_veiculo;
+        EXIT WHEN c_veiculo%NOTFOUND;
+        CASE aux_veiculo
+            WHEN 'pessoal' THEN
+                count_pessoal := count_pessoal + 1;
+            ELSE
+                count_coletivo := count_coletivo + 1;
+        END CASE;
+        i := i + 1;
+    END LOOP;
+    CLOSE c_veiculo;
+    DBMS_OUTPUT.PUT_LINE('Pessoal: ' || count_pessoal || ', Coletivo: ' || count_coletivo);
+END;
