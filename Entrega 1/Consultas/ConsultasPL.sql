@@ -40,3 +40,17 @@ BEGIN
     INSERT INTO Desconto(porcentagem, codigo, cpf_cliente)
             VALUES (aux.porcentagem, aux.codigo, aux.cpf_cliente);
 END;
+
+/*
+Criando um bloco anônimo com um record de pedagio e printando o nome
+*/
+DECLARE
+    TYPE type_cancela IS RECORD (
+        nome VARCHAR2(255),
+        endereco VARCHAR2(255));
+        cancela_01 type_cancela;
+BEGIN
+    cancela_01.nome := 'Karibian';
+    cancela_01.endereco := 'Rua das Mariposas Apropriquadas';
+    DBMS_OUTPUT.PUT_LINE(cancela_01.nome);
+END;
