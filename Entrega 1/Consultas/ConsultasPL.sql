@@ -107,18 +107,19 @@ BEGIN
 END;
 
 /*CREATE OR REPLACE TRIGGER (LINHA​)
-Trigger ativado quando se tenta inserir um Desconto com codigo negativo. */
-CREATE OR REPLACE TRIGGER codigo_negativo
+Trigger ativado quando se tenta inserir um Desconto com porcentagem negativa. */
+CREATE OR REPLACE TRIGGER porcentagem_negativa
 BEFORE INSERT ON Desconto
 FOR EACH ROW
 DECLARE
-    codigo_negativo EXCEPTION;
+    porcentagem_negativa EXCEPTION;
 BEGIN 
-    IF :NEW.codigo < 0 THEN
-        DBMS_OUTPUT.PUT_LINE('DESCONTO COM CODIGO NEGATIVO');
-        RAISE codigo_negativo;
+    IF :NEW.porcentagem < 0 THEN
+        DBMS_OUTPUT.PUT_LINE('DESCONTO COM PORCENTAGEM NEGATIVA');
+        RAISE porcentagem_negativa;
     END IF;
 EXCEPTION
-    WHEN codigo_negativo THEN
-    Raise_application_error(-20202, 'Valor do código negativo-' || 'Não é possível inserir um valor negativo ao código do cupom.');
+    WHEN porcentagem_negativa THEN
+    Raise_application_error(-20202, 'Valor negativo da porcentagem de desconto-' || 'Não é possível inserir um valor negativo à porcentagem do do Desconto.');
 END;
+a
