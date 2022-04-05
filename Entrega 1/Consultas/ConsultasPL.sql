@@ -44,9 +44,8 @@ BEGIN
             VALUES (aux.porcentagem, aux.codigo, aux.cpf_cliente);
 END;
 
-/*
-Criando um bloco anônimo com um record de pedagio e printando o nome
-*/
+/*BLOCO ANÔNIMO:
+Criando um bloco anônimo com um record de pedagio e printando o nome*/
 DECLARE
     TYPE type_cancela IS RECORD (
         nome VARCHAR2(255),
@@ -74,7 +73,7 @@ WHEN pagamento_fora_do_horario THEN
 END;
 
 /*CASE WHEN, LOOP EXIT WHEN, CURSOR (OPEN, FETCH, CLOSE) E WHILE LOOP: 
-loop que analisa os veículos cadastrados, contabilizando de acordo com o tipo.
+Loop que analisa os veículos cadastrados, contabilizando de acordo com o tipo.
 Cursor foi usado para pegar o tipo na tabela Veiculo. */
 DECLARE 
     count_pessoal BINARY_INTEGER;
