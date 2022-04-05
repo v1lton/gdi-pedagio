@@ -56,7 +56,7 @@ BEGIN
     cancela_01.nome := 'Karibian';
     cancela_01.endereco := 'Rua das Mariposas Apropriquadas';
     DBMS_OUTPUT.PUT_LINE(cancela_01.nome);
-    
+
 /*EXCEPTION WHEN E CREATE OR REPLACE TRIGGER (COMANDO):
 Criando trigger que é ativado quando existe a tentativa de se fazer um pagamento fora do horário definido */
 CREATE OR REPLACE TRIGGER pedagio_fechado
@@ -104,4 +104,43 @@ BEGIN
     END LOOP;
     CLOSE c_veiculo;
     DBMS_OUTPUT.PUT_LINE('Pessoal: ' || count_pessoal || ', Coletivo: ' || count_coletivo);
+END;
+
+/* 4 e 7 e 17 e 18. CREATE PROCEDURE, ROWTYPE, CREATE OR REPLACE PACKAGE/BODY. 
+Descrição: Packages com procedures para inserção de elementos do tipo PEDAGIO e CANCELAS na tabela.
+*/
+CREATE OR REPLACE PACKAGE cadastros AS
+PROCEDURE new_pedagio(aux Pedagio%ROWTYPE);
+PROCEDURE new_cancela(
+    c_endereco Cancela.endereco%TYPE,
+    c_num_cancela Cancela.num_cancela%TYPE,
+    c_preco_tarifa Cancela.preco_tarifa%TYPE,
+    c_data_manutencao Cancela.data_manutencao%TYPE,
+    c_status Cancela.status%TYPE,
+    c_tipo_veiculo Cancela.tipo_veiculo%TYPE
+);
+END cadastros;
+
+CREATE OR REPLACE PACKAGE BODY cadastros AS
+PROCEDURE new_pedagio(aux Pedagio%ROWTYPE) IS
+BEGIN
+    INSERT INTO Pedagio(nome, endereco, quant_cancelas)
+        VALUES(aux.nome, aux.endereco, aux.quant_cancelas);
+END new_pedagio;
+
+PROCEDURE new_cancela(
+    c_endereco Cancela.endereco%TYPE,
+    c_num_cancela Cancela.num_cancela%TYPE,
+    c_preco_tarifa Cancela.preco_tarifa%TYPE,
+    c_data_manutencao Cancela.data_manutencao%TYPE,
+    c_status Cancela.status%TYPE,
+    c_tipo_veiculo Cancela.tipo_veiculo%TYPE
+) IS
+    BEGIN
+        INSERT INTO Cancela(endereco, num_cancela, preco_tarifa, data_manutencao, status, tipo_veiculo)
+            VALUES (c_endereco, c_num_cancela, c_preco_tarifa, c_data_manutencao, c_status, c_tipo_veiculo);
+        END new_cancela;
+END cadastros;
+BEGIN
+    cadastros.new_cancela()
 END;
