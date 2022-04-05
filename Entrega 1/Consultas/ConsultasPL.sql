@@ -73,7 +73,8 @@ WHEN pagamento_fora_do_horario THEN
     Raise_application_error(-20202, 'FORA DO HORARIO-' || 'Nosso pedágio fica aberto somente das 8h as 17h. Tente novamente em outro horário.');
 END;
 
-/*Descrição: loop que analisa os veículos cadastrados, contabilizando de acordo com o tipo.
+/*CASE WHEN, LOOP EXIT WHEN, CURSOR (OPEN, FETCH, CLOSE) E WHILE LOOP: 
+loop que analisa os veículos cadastrados, contabilizando de acordo com o tipo.
 Cursor foi usado para pegar o tipo na tabela Veiculo. */
 DECLARE 
     count_pessoal BINARY_INTEGER;
