@@ -36,7 +36,7 @@ BEGIN
     END LOOP;
 END placas_veiculos_block;
 
-/*USO DE PARÂMETROS (IN, OUT OU IN OUT):
+/*CREATE PROCEDURE , USO DE PARÂMETROS (IN, OUT OU IN OUT) E %ROWTYPE:
 Procedimento que cadastra um novo desconto. */
 CREATE OR REPLACE PROCEDURE cadastroDesconto (aux IN Desconto%ROWTYPE) IS
 BEGIN
@@ -56,7 +56,7 @@ BEGIN
     cancela_01.endereco := 'Rua das Mariposas Apropriquadas';
     DBMS_OUTPUT.PUT_LINE(cancela_01.nome);
     
-/*EXCEPTION WHEN E CREATE OR REPLACE TRIGGER (COMANDO):
+/*CREATE OR REPLACE TRIGGER (COMANDO), EXCEPTION WHEN E IF ELSIF:
 Criando trigger que é ativado quando existe a tentativa de se fazer um pagamento fora do horário definido */
 CREATE OR REPLACE TRIGGER pedagio_fechado
 BEFORE INSERT ON Pagamento
