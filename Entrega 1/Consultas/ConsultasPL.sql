@@ -1,4 +1,5 @@
-/*Insere uma nova pessoa utilizando o metodo Record na tabela de Pessoa*/
+/*USO DE RECORD:
+Insere uma nova pessoa utilizando o metodo Record na tabela de Pessoa*/
 <<record_block>>
 DECLARE 
     TYPE pessoa IS RECORD (
@@ -15,7 +16,8 @@ BEGIN
     INSERT INTO Pessoa VALUES nova_pessoa;
 END record_block;
 
-/*Faz uma lista de coluna única das placas dos veiculos cadastrados nos pedagios, usando o %TYPE 
+/*USO DE ESTRUTURA DE DADOS DO TIPO TABLE, %TYPE, FOR IN LOOP:
+Faz uma lista de coluna única das placas dos veiculos cadastrados nos pedagios, usando o %TYPE 
 para referenciar e o FOR IN LOOP para lista-las. */
 <<placas_veiculos_block>>
 DECLARE 
@@ -34,7 +36,8 @@ BEGIN
     END LOOP;
 END placas_veiculos_block;
 
-/*Procedimento que cadastra um novo desconto. */
+/*USO DE PARÂMETROS (IN, OUT OU IN OUT):
+Procedimento que cadastra um novo desconto. */
 CREATE OR REPLACE PROCEDURE cadastroDesconto (aux IN Desconto%ROWTYPE) IS
 BEGIN
     INSERT INTO Desconto(porcentagem, codigo, cpf_cliente)
