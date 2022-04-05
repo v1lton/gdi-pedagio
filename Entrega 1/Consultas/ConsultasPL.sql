@@ -36,7 +36,7 @@ BEGIN
     END LOOP;
 END placas_veiculos_block;
 
-/*CREATE PROCEDURE , USO DE PARÂMETROS (IN, OUT OU IN OUT) E %ROWTYPE:
+/*USO DE PARÂMETROS (IN, OUT OU IN OUT) E %ROWTYPE:
 Procedimento que cadastra um novo desconto. */
 CREATE OR REPLACE PROCEDURE cadastroDesconto (aux IN Desconto%ROWTYPE) IS
 BEGIN
