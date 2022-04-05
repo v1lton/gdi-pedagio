@@ -105,3 +105,20 @@ BEGIN
     CLOSE c_veiculo;
     DBMS_OUTPUT.PUT_LINE('Pessoal: ' || count_pessoal || ', Coletivo: ' || count_coletivo);
 END;
+
+/*CREATE OR REPLACE TRIGGER (LINHA​)
+Trigger ativado quando se tenta inserir um Desconto com codigo negativo. */
+CREATE OR REPLACE TRIGGER codigo_negativo
+BEFORE INSERT ON Desconto
+FOR EACH ROW
+DECLARE
+    codigo_negativo EXCEPTION;
+BEGIN 
+    IF :NEW.codigo < 0 THEN
+        DBMS_OUTPUT.PUT_LINE('DESCONTO COM CODIGO NEGATIVO');
+        RAISE codigo_negativo;
+    END IF;
+EXCEPTION
+    WHEN codigo_negativo THEN
+    Raise_application_error(-20202, 'Valor do código negativo-' || 'Não é possível inserir um valor negativo ao código do cupom.');
+END;
