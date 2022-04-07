@@ -57,11 +57,8 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE(cancela_01.nome);
 <<<<<<< HEAD
 
-/*EXCEPTION WHEN E CREATE OR REPLACE TRIGGER (COMANDO):
-=======
-    
+
 /*CREATE OR REPLACE TRIGGER (COMANDO), EXCEPTION WHEN E IF ELSIF:
->>>>>>> 6eb88b812d7cb0990a2f50c9e9da3ce013993698
 Criando trigger que é ativado quando existe a tentativa de se fazer um pagamento fora do horário definido */
 CREATE OR REPLACE TRIGGER pedagio_fechado
 BEFORE INSERT ON Pagamento
@@ -111,9 +108,8 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Pessoal: ' || count_pessoal || ', Coletivo: ' || count_coletivo);
 END;
 
-/* 4 e 7 e 17 e 18. CREATE PROCEDURE, ROWTYPE, CREATE OR REPLACE PACKAGE/BODY. 
-Descrição: Packages com procedures para inserção de elementos do tipo PEDAGIO e CANCELAS na tabela.
-*/
+/*CREATE PROCEDURE, ROWTYPE, CREATE OR REPLACE PACKAGE/BODY:
+Packages com procedures para inserção de elementos do tipo PEDAGIO e CANCELAS na tabela. */
 CREATE OR REPLACE PACKAGE cadastros AS
 PROCEDURE new_pedagio(aux Pedagio%ROWTYPE);
 PROCEDURE new_cancela(
@@ -166,3 +162,30 @@ EXCEPTION
     WHEN porcentagem_negativa THEN
     Raise_application_error(-20202, 'Valor negativo da porcentagem de desconto-' || 'Não é possível inserir um valor negativo à porcentagem do do Desconto.');
 END;
+
+/*CREATE FUNCTION, IF/ELSIF E SELECT ... INTO
+Função que recebe o cpf do cliente, a data do pagamento e a forma de pagamento, e printa mensagens de acordo com a forma de pagamento*/
+CREATE OR REPLACE FUNCTION forma_de_pagamento_msg (cpf Pagamento.cpf_cliente%TYPE, data Pagamento.data_pagamento%TYPE)
+RETURN VARCHAR2
+IS
+    forma_pagamento Pagamento.forma_pagamento%TYPE;
+    func_out VARCHAR2(255);
+BEGIN
+    SELECT p.forma_pagamento INTO forma_pagamento
+    FROM Pagamento p
+    WHERE p.cpf_cliente = cpf AND p.data_pagamento = data;
+
+    IF forma_pagamento = 'PIX' THEN
+        func_out := 'Você pagou no PIX!';
+    ELSIF forma_pagamento = 'debito' THEN
+        func_out := 'Você pagou no débito!';
+    ELSIF forma_pagamento = 'credito' THEN
+        func_out := 'Você pagou no crédito!';
+    ELSIF forma_pagamento = 'dinheiro' THEN
+        func_out := 'Você pagou em dinheiro!';
+    ELSE
+        func_out := 'Forma de pagamento não autorizada!';
+    END IF;
+    RETURN func_out;
+END forma_de_pagamento_msg;
+--Teste: SELECT forma_de_pagamento_msg('001', TIMESTAMP '2022-08-10 12:23:37') FROM DUAL;
