@@ -55,7 +55,7 @@ BEGIN
     cancela_01.nome := 'Karibian';
     cancela_01.endereco := 'Rua das Mariposas Apropriquadas';
     DBMS_OUTPUT.PUT_LINE(cancela_01.nome);
-<<<<<<< HEAD
+END;
 
 
 /*CREATE OR REPLACE TRIGGER (COMANDO), EXCEPTION WHEN E IF ELSIF:
@@ -121,14 +121,12 @@ PROCEDURE new_cancela(
     c_tipo_veiculo Cancela.tipo_veiculo%TYPE
 );
 END cadastros;
-
 CREATE OR REPLACE PACKAGE BODY cadastros AS
 PROCEDURE new_pedagio(aux Pedagio%ROWTYPE) IS
 BEGIN
     INSERT INTO Pedagio(nome, endereco, quant_cancelas)
         VALUES(aux.nome, aux.endereco, aux.quant_cancelas);
 END new_pedagio;
-
 PROCEDURE new_cancela(
     c_endereco Cancela.endereco%TYPE,
     c_num_cancela Cancela.num_cancela%TYPE,
@@ -142,9 +140,6 @@ PROCEDURE new_cancela(
             VALUES (c_endereco, c_num_cancela, c_preco_tarifa, c_data_manutencao, c_status, c_tipo_veiculo);
         END new_cancela;
 END cadastros;
-BEGIN
-    cadastros.new_cancela()
-END;
 
 /*CREATE OR REPLACE TRIGGER (LINHA​)
 Trigger ativado quando se tenta inserir um Desconto com porcentagem negativa. */
