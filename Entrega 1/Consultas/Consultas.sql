@@ -21,7 +21,7 @@ WHERE cargo = 'atendente';
 /*Delete:
 Um dos telefones do gerente não é mais válido, então vamos tirá-lo da tabela */
 DELETE FROM Telefones
-WHERE (cpf = 001 AND telefone = 81900000011);
+WHERE (cpf = 001 AND num_telefone = 81900000011);
 
 /*Select from where:
 Selecionar o cpf dos clientes que usaram pix como forma de pagamento */
@@ -30,15 +30,15 @@ FROM Pagamento
 WHERE forma_pagamento = 'PIX';
 
 /*Between:
-Selecionar o cpf dos clientes que fizeram pagamento no mês de abril */
+Selecionar o cpf dos clientes que fizeram pagamento no mês de agosto */
 --ou cancelas que precisam ed manutenção em algum mês
 SELECT cpf_cliente
 FROM Pagamento
-WHERE data_pagamento Between ('01-AGO-2022 00:00') AND ('30-AGO-2022 23:59');
+WHERE data_pagamento Between ('01-AUG-2022 00:00') AND ('30-AUG-2022 23:59');
 
 /*In:
 Selecionar cpf dos funcionários que têm salário 1500 ou 3000 */
-SELECT cpf_funcionario
+SELECT cpf
 FROM Funcionario
 WHERE salario IN ('1500', '3000');
 
@@ -79,9 +79,9 @@ FROM Pagamento
 WHERE codigo_desconto IS NULL;
 
 /*Order by:
-Listar toda a tabela de clientes, ordenada ascendentemente 
+Listar toda a tabela de pessoas, ordenada ascendentemente 
 pelo nome (ordem alfabética de a-z)*/
-SELECT * FROM Cliente ORDER BY nome;
+SELECT * FROM Pessoa ORDER BY nome;
 
 /*Left/Right/Full outer join
 Lista o cpf de todos os funcionários e os cpf mais os cargos dos funcionários de quem são responsáveis
@@ -122,7 +122,7 @@ CREATE VIEW visao_pagIntegral AS
 SELECT * FROM Pagamento
 WHERE codigo_desconto IS NULL;
 
-/* Grant / Revoke:
+/* Grant / Revoke: Não roda porque o SQL live não permite
 Descrição: Dar ao usuário a capacidade de inserir e deletar pessoas 
 do banco de dados. Depois, vamos impedir que pessoas sejam deletadas. */
 GRANT DELETE, INSERT ON Pessoa TO PUBLIC;
