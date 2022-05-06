@@ -25,7 +25,8 @@ CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
     nome VARCHAR2 (20),
     sobrenome VARCHAR2 (50),
     telefone tp_varray_telefone,
-    MEMBER PROCEDURE print_info
+    MEMBER PROCEDURE print_info,
+    FINAL MAP MEMBER FUNCTION qntd_telefones RETURN NUMBER
 
 ) NOT FINAL NOT INSTANTIABLE;
 
@@ -34,8 +35,6 @@ CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
 -- TIPO CLIENTE
 -- Herda de Pessoa
 CREATE OR REPLACE TYPE tp_cliente UNDER tp_pessoa (
-
-    FINAL MAP MEMBER FUNCTION qntd_telefones RETURN NUMBER
 
 );
 
@@ -56,6 +55,34 @@ END;
 
 /
 
+-- TIPO CANCELA
+CREATE OR REPLACE TYPE tp_cancela AS OBJECT (
+
+    num_cancela NUMBER,
+    preco_tarica NUMBER,
+    data_manutencao DATE,
+    status_cancela VARCHAR2 (10),
+    tipo_veiculo VARCHAR2 (10)
+
+);
+
+-- TIPO NESTED CANCELA
+CREATE OR REPLACE TYPE tp_nt_cancelas AS TABLE OF tp_cancela;
+
+/
+
+-- TIPO PEDAGIO
+CREATE OR REPLACE TYPE tp_pedagio AS OBJECT (
+
+    nome VARCHAR2 (20),
+    endereco VARCHAR2 (100),
+    quant_cancelas NUMBER,
+    cancelas tp_nt_cancelas
+
+);
+
+/
+
 -- TIPO FUNCIONÁRIO
 -- Herda de Pessoa
 -- Checklist: 8, 11, 15
@@ -65,7 +92,7 @@ CREATE OR REPLACE TYPE tp_funcionario UNDER tp_pessoa (
     endereco REF tp_pedagio,
     cargo VARCHAR2 (15),
     salario NUMBER,
-    OVERRIDING MEMBER PROCEDURE print_info
+    OVERRIDING MEMBER PROCEDURE print_info,
     CONSTRUCTOR FUNCTION tp_funcionario (x1 tp_funcionario) RETURN SELF AS RESULT
 
 );
@@ -133,31 +160,6 @@ CREATE OR REPLACE TYPE tp_desconto AS OBJECT (
     porcentagem NUMBER,
     codigo NUMBER,
     cpf_cliente REF tp_cliente
-
-);
-
-/
-
--- TIPO CANCELA
-CREATE OR REPLACE TYPE tp_cancela AS OBJECT (
-
-    num_cancela NUMBER,
-    preco_tarica NUMBER,
-    data_manutencao DATE,
-    status_cancela VARCHAR2 (10),
-    tipo_veiculo VARCHAR2 (10)
-
-);
-
-/
-
--- TIPO PEDAGIO
-CREATE OR REPLACE TYPE tp_pedagio AS OBJECT (
-
-    nome VARCHAR2 (20),
-    endereco VARCHAR2 (100),
-    quant_cancelas NUMBER,
-    cancelas tp_nt_cancelas
 
 );
 
