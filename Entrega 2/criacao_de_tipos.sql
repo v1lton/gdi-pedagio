@@ -193,7 +193,7 @@ CREATE OR REPLACE TYPE tp_pagamento AS OBJECT (
 
 /
 
--- ALTER TYPE + ADD: adiciona atributo email em pessoa
+-- ALTER TYPE + ADD: adiciona atributo naturalidade em pessoa
 -- CASCADE: propaga a mudança para tipos dependentes de tp_pessoa
 -- Checklist: 12
 ALTER TYPE tp_pessoa ADD ATTRIBUTE (naturalidade VARCHAR2(20)) CASCADE;

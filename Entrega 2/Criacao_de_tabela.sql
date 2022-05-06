@@ -61,7 +61,7 @@ CREATE OR REPLACE TYPE tp_nt_cancelas AS TABLE OF tp_cancela;
 /
 
 --TABELA PEDAGIO
-CREATE TABLE tb_pedagio OF tp_desconto (
+CREATE TABLE tb_pedagio OF tp_pedagio (
 
     endereco PRIMARY KEY ,
     nome NOT NULL,
