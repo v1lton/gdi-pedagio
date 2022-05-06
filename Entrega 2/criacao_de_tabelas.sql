@@ -58,7 +58,7 @@ CREATE TABLE tb_funcionario OF tp_funcionario (
     nome NOT NULL,
     sobrenome NOT NULL,
     telefone NOT NULL,
-    cpf_supervisor WITH ROWID REFERENCES tb_funcionario NOT NULL,
+    cpf_supervisor WITH ROWID REFERENCES tb_funcionario,
     endereco WITH ROWID REFERENCES tb_pedagio NOT NULL,
     cargo NOT NULL,
     salario NOT NULL CHECK (salario >= 1212.00)
@@ -72,7 +72,7 @@ CREATE TABLE tb_monitora OF tp_monitora (
 
     cpf_funcionario WITH ROWID REFERENCES tb_funcionario,
     endereco WITH ROWID REFERENCES tb_pedagio,
-    num_cancela NOT NULL UNIQUE,
+    num_cancela NOT NULL,
     inicio_monitoramento PRIMARY KEY,
     fim_monitoramento UNIQUE
 
