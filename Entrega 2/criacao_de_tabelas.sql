@@ -74,7 +74,7 @@ CREATE TABLE tb_monitora OF tp_monitora (
     endereco WITH ROWID REFERENCES tb_pedagio,
     num_cancela NOT NULL,
     inicio_monitoramento PRIMARY KEY,
-    fim_monitoramento UNIQUE
+    fim_monitoramento NOT NULL UNIQUE
 
 );
 
