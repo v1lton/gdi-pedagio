@@ -270,7 +270,7 @@ INSERT INTO tb_pagamento VALUES (
         (SELECT REF(C) FROM tb_cliente C WHERE C.cpf = '001'),
         (SELECT REF(V) FROM tb_veiculo V WHERE V.placa = 'AAA1234'),
         (SELECT REF(P) FROM tb_pedagio P WHERE P.endereco = 'Rua Amelia 65'),
-        '1', 
+        (SELECT num_cancela FROM TABLE(SELECT P.cancelas FROM tb_pegadio P WHERE P.endereco = 'Rua Amelia 65') WHERE num_cancela = 1), 
         (SELECT REF(D) FROM tb_desconto D WHERE D.codigo = '2'),
         TIMESTAMP '2022-08-10 12:23:37', 
         'dinheiro'
@@ -281,10 +281,10 @@ INSERT INTO tb_pagamento VALUES (
 
 INSERT INTO tb_pagamento VALUES (
     tp_pagamento(
-        (SELECT REF(C) FROM tb_cliente C WHERE C.cpf = '05'),
+        (SELECT REF(C) FROM tb_cliente C WHERE C.cpf = '005'),
         (SELECT REF(V) FROM tb_veiculo V WHERE V.placa = 'BBB2021'),
         (SELECT REF(P) FROM tb_pedagio P WHERE P.endereco = 'Rua Amelia 65'),
-        (SELECT num_cancela FROM TABLE(SELECT P.cancelas FROM tb_pegadio P WHERE P.endereco = 'Rua Amelia 65') WHERE num_cancela = "1"),
+        (SELECT num_cancela FROM TABLE(SELECT P.cancelas FROM tb_pegadio P WHERE P.endereco = 'Rua Amelia 65') WHERE num_cancela = 3),
         (SELECT REF(D) FROM tb_desconto D WHERE D.codigo = '1'),
         TIMESTAMP '2022-10-08 11:55:32', 
         'PIX'
