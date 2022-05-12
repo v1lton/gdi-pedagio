@@ -93,6 +93,7 @@ CREATE OR REPLACE TYPE tp_funcionario UNDER tp_pessoa (
     cargo VARCHAR2 (15),
     salario NUMBER,
     OVERRIDING MEMBER PROCEDURE print_info,
+    MEMBER FUNCTION salarioAnual RETURN NUMBER,
     CONSTRUCTOR FUNCTION tp_funcionario (x1 tp_funcionario) RETURN SELF AS RESULT
 
 );
