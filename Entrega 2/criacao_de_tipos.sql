@@ -94,6 +94,7 @@ CREATE OR REPLACE TYPE tp_funcionario UNDER tp_pessoa (
     salario NUMBER,
     OVERRIDING MEMBER PROCEDURE print_info,
     MEMBER FUNCTION salarioAnual RETURN NUMBER,
+    ORDER MEMBER FUNCTION comparaSalario (SELF IN OUT NOCOPY tp_funcionario, f tp_funcionario) RETURN NUMBER
     CONSTRUCTOR FUNCTION tp_funcionario (x1 tp_funcionario) RETURN SELF AS RESULT
 
 );
@@ -113,10 +114,18 @@ MEMBER FUNCTION salarioAnual RETURN NUMBER IS
         RETURN salario*12;
     END;
 -- Checklist: 5
-ORDER MEMBER FUNCTION comparaSalario (X tp_funcionario) RETURN INTEGER IS
+CREATE OR REPLACE TYPE BODY tp_funcionario AS
+ORDER MEMBER FUNCTION comparaSalario (SELF IN OUT NOCOPY tp_funcionario, f tp_funcionario) RETURN NUMBER IS
     BEGIN
-        RETURN SELF.salario - X.salario;
+        IF SELF.salario < f.salario THEN 
+            RETURN -1;
+        ELSIF SELF.salario > f.salario THEN 
+            RETURN 1;
+        ELSE 
+            RETURN 0;
+        END IF;
     END;
+END;
 OVERRIDING MEMBER PROCEDURE print_info IS
     BEGIN
         DBMS_OUTPUT.PUT_LINE(nome);
