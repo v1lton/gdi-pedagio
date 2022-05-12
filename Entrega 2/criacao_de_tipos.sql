@@ -94,7 +94,6 @@ CREATE OR REPLACE TYPE tp_funcionario UNDER tp_pessoa (
     salario NUMBER,
     OVERRIDING MEMBER PROCEDURE print_info,
     MEMBER FUNCTION salarioAnual RETURN NUMBER,
-    ORDER MEMBER FUNCTION comparaSalario (SELF IN OUT NOCOPY tp_funcionario, f tp_funcionario) RETURN NUMBER
     CONSTRUCTOR FUNCTION tp_funcionario (x1 tp_funcionario) RETURN SELF AS RESULT
 
 );
@@ -115,17 +114,6 @@ MEMBER FUNCTION salarioAnual RETURN NUMBER IS
     END;
 -- Checklist: 5
 CREATE OR REPLACE TYPE BODY tp_funcionario AS
-ORDER MEMBER FUNCTION comparaSalario (SELF IN OUT NOCOPY tp_funcionario, f tp_funcionario) RETURN NUMBER IS
-    BEGIN
-        IF SELF.salario < f.salario THEN 
-            RETURN -1;
-        ELSIF SELF.salario > f.salario THEN 
-            RETURN 1;
-        ELSE 
-            RETURN 0;
-        END IF;
-    END;
-END;
 OVERRIDING MEMBER PROCEDURE print_info IS
     BEGIN
         DBMS_OUTPUT.PUT_LINE(nome);
@@ -169,9 +157,23 @@ CREATE OR REPLACE TYPE tp_desconto AS OBJECT (
 
     porcentagem NUMBER,
     codigo NUMBER,
-    cpf_cliente REF tp_cliente
+    cpf_cliente REF tp_cliente,
+    ORDER MEMBER FUNCTION comparaDesconto (SELF IN OUT NOCOPY tp_desconto, t tp_desconto) RETURN NUMBER
 
 );
+
+CREATE OR REPLACE TYPE BODY tp_desconto AS
+ORDER MEMBER FUNCTION comparaDesconto (SELF IN OUT NOCOPY tp_desconto, c tp_desconto) RETURN NUMBER IS
+    BEGIN
+        IF SELF.porcentagem < f.porcentagem THEN 
+            RETURN -1;
+        ELSIF SELF.porcentagem > f.porcentagem THEN 
+            RETURN 1;
+        ELSE 
+            RETURN 0;
+        END IF;
+    END;
+END;
 
 /
 
