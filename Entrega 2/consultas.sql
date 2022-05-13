@@ -56,18 +56,11 @@ BEGIN
     IF aux = 1 THEN
         DBMS_OUTPUT.PUT_LINE('Desconto do cupom ' || TO_CHAR(cupom1.codigo) 
                     || ' é maior que o desconto do cupom ' || TO_CHAR(cupom2.codigo));
-        DBMS_OUTPUT.PUT_LINE('Cupom de codigo ' || TO_CHAR(cupom1.codigo) || ' possui desconto de ' 
-                    || TO_CHAR(cupom1.porcentagem) || ' reais, enquanto '
-                    || TO_CHAR(cupom2.codigo) || ' tem desconto de ' || TO_CHAR(cupom2.porcentagem) || ' reais.');
     ELSIF aux = -1 THEN 
         DBMS_OUTPUT.PUT_LINE('Desconto do cupom ' || TO_CHAR(cupom2.codigo) 
                     || ' é maior que o desconto do cupom ' || TO_CHAR(cupom1.codigo));
-        DBMS_OUTPUT.PUT_LINE('Cupom de codigo ' || TO_CHAR(cupom2.codigo) || ' possui desconto de ' 
-                    || TO_CHAR(cupom2.porcentagem) || ' reais, enquanto o cupom de id '
-                    || TO_CHAR(cupom1.codigo) || ' tem desconto de ' || TO_CHAR(cupom1.porcentagem) || ' reais.');
     ELSE
-        DBMS_OUTPUT.PUT_LINE('Ambos possuem o mesmo desconto.');
-        DBMS_OUTPUT.PUT_LINE('O desconto é de: ' || TO_CHAR(cupom1.porcentagem) || ' reais');
+        DBMS_OUTPUT.PUT_LINE('Ambos possuem o mesmo desconto');
     END IF;
 END; */
 
