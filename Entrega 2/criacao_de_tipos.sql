@@ -107,13 +107,11 @@ CREATE OR REPLACE TYPE tp_funcionario UNDER tp_pessoa (
 -- constructor: padrão
 -- Checklist: 2, 4
 CREATE OR REPLACE TYPE BODY tp_funcionario AS
-
 MEMBER FUNCTION salarioAnual RETURN NUMBER IS
     BEGIN
         RETURN salario*12;
     END;
 -- Checklist: 5
-CREATE OR REPLACE TYPE BODY tp_funcionario AS
 OVERRIDING MEMBER PROCEDURE print_info IS
     BEGIN
         DBMS_OUTPUT.PUT_LINE(nome);
@@ -123,7 +121,7 @@ OVERRIDING MEMBER PROCEDURE print_info IS
         DBMS_OUTPUT.PUT_LINE(salario);
     END;
 -- Checklist: 7
-CONSTRUCTOR FUNCTION tp_entregador (x1 tp_entregador) RETURN SELF AS RESULT IS
+CONSTRUCTOR FUNCTION tp_funcionario (x1 tp_funcionario) RETURN SELF AS RESULT IS
     BEGIN
         cpf := x1.cpf; 
         nome := x1.nome; 
@@ -136,7 +134,6 @@ CONSTRUCTOR FUNCTION tp_entregador (x1 tp_entregador) RETURN SELF AS RESULT IS
         salario := x1.salario; 
         RETURN; 
     END;
-
 END;
 
 /
