@@ -153,26 +153,26 @@ CREATE OR REPLACE TYPE tp_veiculo AS OBJECT (
 /
 
 -- TIPO DESCONTO
-CREATE OR REPLACE TYPE tp_desconto AS OBJECT (
-
-    porcentagem NUMBER,
-    codigo NUMBER,
-    cpf_cliente REF tp_cliente,
-    ORDER MEMBER FUNCTION comparaDesconto (SELF IN OUT NOCOPY tp_desconto, t tp_desconto) RETURN NUMBER
-
+CREATE OR REPLACE TYPE tp_desconto AS OBJECT ( 
+ 
+    porcentagem NUMBER, 
+    codigo NUMBER, 
+    cpf_cliente REF tp_cliente, 
+    ORDER MEMBER FUNCTION comparaDesconto (SELF IN OUT NOCOPY tp_desconto, c tp_desconto) RETURN NUMBER 
+ 
 );
 
-CREATE OR REPLACE TYPE BODY tp_desconto AS
-ORDER MEMBER FUNCTION comparaDesconto (SELF IN OUT NOCOPY tp_desconto, c tp_desconto) RETURN NUMBER IS
-    BEGIN
-        IF SELF.porcentagem < f.porcentagem THEN 
-            RETURN -1;
-        ELSIF SELF.porcentagem > f.porcentagem THEN 
-            RETURN 1;
-        ELSE 
-            RETURN 0;
-        END IF;
-    END;
+CREATE OR REPLACE TYPE BODY tp_desconto AS 
+ORDER MEMBER FUNCTION comparaDesconto (SELF IN OUT NOCOPY tp_desconto, c tp_desconto) RETURN NUMBER IS 
+    BEGIN 
+        IF SELF.porcentagem < c.porcentagem THEN
+            RETURN -1; 
+        ELSIF SELF.porcentagem > c.porcentagem THEN
+            RETURN 1; 
+        ELSE
+            RETURN 0; 
+        END IF; 
+    END; 
 END;
 
 /
