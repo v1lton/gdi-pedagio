@@ -41,8 +41,12 @@ DEREF(C.endereco).endereco AS Pedagio, num_cancela,
 DEREF(C.codigo_desconto).codigo AS Desconto, 
 data_pagamento, forma_pagamento FROM tb_pagamento C;
 
-/* -- Member function
+/
+
+-- Member function
 SELECT S.salarioAnual() FROM tb_funcionario S WHERE S.cpf = '001';
+
+/
 
 ----- ORDER MEMBER FUNCTION -----
 DECLARE 
@@ -62,5 +66,15 @@ BEGIN
     ELSE
         DBMS_OUTPUT.PUT_LINE('Ambos possuem o mesmo desconto');
     END IF;
-END; */
+END; 
+
+/
+
+-- OVERRIDE MEMBER PROCEDURE
+DECLARE 
+    funcionario tp_funcionario;
+BEGIN   
+    SELECT VALUE(F) INTO funcionario FROM tb_funcionario F WHERE F.cpf = '006';
+    funcionario.print_info();
+END;
 
