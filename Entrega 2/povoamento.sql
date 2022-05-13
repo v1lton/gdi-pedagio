@@ -205,7 +205,7 @@ INSERT INTO tb_funcionario VALUES (
 );
 
 /
-/*
+
 INSERT INTO tb_funcionario VALUES (
 
     tp_funcionario(
@@ -221,7 +221,7 @@ INSERT INTO tb_funcionario VALUES (
         '1500'
     )
 
-);*/
+);
 
 /
 
